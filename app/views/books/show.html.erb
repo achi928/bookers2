@@ -1,6 +1,14 @@
 <h1>Books#show</h1>
 <p>Find me in app/views/books/show.html.erb</p>
 
+<h2>User info</h2>
+<div>
+  <%= image_tag @user.get_profile_image(100,100) %>
+  <p>name</p>
+  <%= @user.name %>
+  <p>introduction</p>
+  <%= @user.introduction %>
+</div>
 
 <h1>New book</h1>
 
@@ -13,12 +21,18 @@
 <% end %>
 
 
+<h2>Book detail</h2>
   <div>
-    ユーザー画像にもリンク貼る
-    <p>ユーザー画像設定する:<%= image_tag 'sample-author1.jpg' %></p>
-    <p>Title テーブルで整える:<%= @book.title %></p>
+    <%= link_to user_path(user.id) do %>
+      <%= image_tag @book.user.get_profile_image(100,100) %>
+    <% end %>
+    <%= link_to book_path(@book.id) do %>
+      <%= @book.title %></p>
+    <% end %>
     <p>Opinion:<%= @book.body %></p>
-    <% if @book.user == current_user %>
-      <%= link_to "destroy",book_path(@book),method: :delete %>
+    <% if @book.user.id == current_user.id %>
+      <%= link_to "destroy",book_path(@book.id),method: :delete %>
     <% end %>
   </div>
+
+

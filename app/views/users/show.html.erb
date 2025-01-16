@@ -8,12 +8,15 @@
   <p>introduction
     <%= @user.introduction %>
   </p>
+  <% if @user == current_user %>
+    <p><%= link_to "プロフィール編集のアイコン", edit_user_path(@user) %></p>
+  <% end %>
 </div>
 
 
 <h1>New book</h1>
 
-<%= form_with model: [@user, @book] do |f| %>
+<%= form_with model: @book do |f| %>
   <label>Title</label>
     <%= f.text_field :title %>
   <label>Opinion</label>
@@ -22,9 +25,12 @@
 <% end %>
 
 
-<% @books.each do |book| %>
+
+<p>image</p>
+<p>name</p>
+<% @books. each do |book| %>
   <div>
-    <p>ユーザー画像設定する:<%= image_tag 'sample-author1.jpg' %></p>
+    <%= image_tag book.user.get_profile_image(100,100) %>
     <p>Title<p>
     <%= link_to book_path(book.id) do %>
       <%= book.title %>
@@ -32,3 +38,4 @@
     <p>Opinion<%= book.body %></p>
   </div>
 <% end %>
+
