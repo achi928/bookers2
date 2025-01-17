@@ -1,6 +1,19 @@
 <h1>Bookの一覧ページ </h1>
 
+<h2>User info</h2>
 
+<div>
+  <%= image_tag current_user.get_profile_image(100,100) %>
+  <p>name
+    <%= current_user.name %>
+  </p>
+  <p>introduction
+    <%= current_user.introduction %>
+  </p>
+  <% if current_user %>
+    <p><%= link_to "プロフィール編集のアイコン", edit_user_path(current_user.id) %></p>
+  <% end %>
+</div>
 
 <h1>New book</h1>
 
@@ -13,7 +26,9 @@
 <% end %>
 
 <% if @user == current_user %>
-  <p><%= link_to "プロフィール編集のアイコン", edit_user_path(@user.id) %></p>
+  <%= link_to "Edit", edit_user_path(@user) %> 
+<% else %>
+  
 <% end %>
 
 

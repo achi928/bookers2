@@ -1,18 +1,18 @@
+<h1>ユーザーの一覧ページ</h1>
+
 <h2>User info</h2>
 
 <div>
-  <%= image_tag @user.get_profile_image(100,100) %>
+  <%= image_tag current_user.get_profile_image(100,100) %>
   <p>name
-    <%= @user.name %>
+    <%= current_user.name %>
   </p>
   <p>introduction
-    <%= @user.introduction %>
+    <%= current_user.introduction %>
   </p>
-
-  <% if @user == current_user %>
-    <p><%= link_to "プロフィール編集のアイコン", edit_user_path(@user.id) %></p>
+  <% if @users == current_user %>
+    <p><%= link_to "プロフィール編集のアイコン", edit_user_path(@user) %></p>
   <% end %>
-
 </div>
 
 <h1>New book</h1>
@@ -27,7 +27,7 @@
 
 
 <h2>Users</h2>
-<% @users.each do |book| %>
+<% @users.each do |user| %>
   <div>
     <p>imageあとでテーブルにする</p>
     <p>投稿ユーザー画像：<%= image_tag user.get_profile_image(100,100) %></p>

@@ -1,5 +1,4 @@
-<h1>Books#show</h1>
-<p>Find me in app/views/books/show.html.erb</p>
+<h1>Bookの詳細ページ</h1>
 
 <h2>User info</h2>
 <div>
@@ -15,8 +14,9 @@
 <% else %>
   <%= link_to "Edit", user_path(@user.id) %>
 <% end %>
-ログインしてたら、editページ
+current_userだったら、editページ
 してなかったら、ユーザーshowページ
+アイコンをつける
 
 <h1>New book</h1>
 
