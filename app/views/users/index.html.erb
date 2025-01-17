@@ -10,7 +10,7 @@
   </p>
 
   <% if @user == current_user %>
-    <p><%= link_to "プロフィール編集のアイコン", edit_user_path(@user) %></p>
+    <p><%= link_to "プロフィール編集のアイコン", edit_user_path(@user.id) %></p>
   <% end %>
 
 </div>

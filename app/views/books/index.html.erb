@@ -1,5 +1,5 @@
-<h1>Books#index</h1>
-<p>Find me in app/views/books/index.html.erb</p>
+<h1>Bookの一覧ページ </h1>
+
 
 
 <h1>New book</h1>
@@ -12,12 +12,18 @@
   <%= f.submit 'Create Book' %>
 <% end %>
 
+<% if @user == current_user %>
+  <p><%= link_to "プロフィール編集のアイコン", edit_user_path(@user.id) %></p>
+<% end %>
+
 
 <h2>Books</h2>
 
 <% @books.each do |book| %>
   <div>
-    <p>投稿ユーザー画像：<%= image_tag book.user.get_profile_image(100,100) %></p>
+    <%= link_to user_path(book.user.id) do %>
+    <p><%= image_tag book.user.get_profile_image(100,100) %></p>
+    <% end %>
     <p>Title<p>
     <%= link_to book_path(book.id) do %>
       <%= book.title %>
