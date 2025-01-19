@@ -1,48 +1,21 @@
-<h1>Bookの詳細ページ</h1>
+<h1>bookの詳細ページ</h1>
 
-<h2>User info</h2>
 <div>
-  <%= image_tag @user.get_profile_image(100,100) %>
-  <p>name</p>
-  <%= @user.name %>
-  <p>introduction</p>
-  <%= @user.introduction %>
+  <%= flash[:notice] %>
 </div>
 
-<% if @book.user.id == current_user.id %>
-  <%= link_to "Edit", edit_user_path(@user.id) %> 
-<% else %>
-  <%= link_to "Edit", user_path(@user.id) %>
-<% end %>
-current_userだったら、editページ
-してなかったら、ユーザーshowページ
-アイコンをつける
-
-<h1>New book</h1>
-
-<%= form_with model: @book do |f| %>
-  <label>Title</label>
-    <%= f.text_field :title %>
-  <label>Opinion</label>
-    <%= f.text_area :body %>
-  <%= f.submit 'Create Book' %>
-<% end %>
-
+<%= render 'users/user', user: @user, book_new: @book_new %>
 
 <h2>Book detail</h2>
-  <div>
-    <%= link_to user_path(@user.id) do %>
-      <%= image_tag @user.get_profile_image(100,100) %>
-      <%= @user.name %>
-    <% end %>
-    <%= link_to book_path(@book.id) do %>
-      <%= @book.title %></p>
-    <% end %>
-    <p>Opinion:<%= @book.body %></p>
-    <% if @book.user.id == current_user.id %>
-      <%= link_to "Edit", edit_user_path(@user.id) %> 
-      <%= link_to "Destroy", book_path(@book.id),method: :delete %>
-    <% end %>
-  </div>
 
+<%= link_to user_path(@user.id) do %>
+  <%= image_tag @user.get_profile_image(100,100) %>
+  <%= @user.name %>
+<% end %>
+<%= @book.title %>
+<%= @book.body %>
 
+<% if @book.user == current_user %>
+  <%= link_to "Edit", edit_book_path(@book.id) %>
+  <%= link_to "Destroy", book_path(@book.id), method: :delete %>
+<% end %>

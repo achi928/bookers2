@@ -1,0 +1,24 @@
+show同士の部分テンプレート
+
+<h2>User info</h2>
+<%= image_tag user.get_profile_image(100,100) %>
+<p>name</p>
+<%= user.name %>
+<p>introduction</p>
+<%= user.introduction %>
+
+<% if user == current_user %>
+  <p><%= link_to "プロフィール編集のアイコン", edit_user_path(user.id) %></p>
+<% else %>
+  <p><%= link_to "ユーザー詳細ページ", user_path(current_user.id) %></p>
+<% end %>
+
+<h2>New book</h2>
+  
+<%= form_with model: book_new do |f| %>
+  <label>Title</label>
+    <%= f.text_field :title %>
+  <label>Opinion</label>
+    <%= f.text_area :body %>
+  <%= f.submit 'Create Book' %>
+<% end %>

@@ -1,43 +1,22 @@
-<h1>ユーザー詳細ページ</h2>
-
-<h2>User info</h2>
-
+<h1>ユーザーの詳細ページ</h1>
 <div>
-  <%= image_tag @user.get_profile_image(100,100) %>
-  <p>name
-    <%= @user.name %>
-  </p>
-  <p>introduction
-    <%= @user.introduction %>
-  </p>
-  <% if @user == current_user %>
-    <p><%= link_to "プロフィール編集のアイコン", edit_user_path(@user) %></p>
-  <% end %>
+  <%= flash[:notice] %>
 </div>
 
-
-<h1>New book</h1>
-
-<%= form_with model: @book do |f| %>
-  <label>Title</label>
-    <%= f.text_field :title %>
-  <label>Opinion</label>
-    <%= f.text_area :body %>
-  <%= f.submit 'Create Book' %>
-<% end %>
+<%= render 'user', user: @user, book_new: @book_new %>
 
 
-
-<p>image</p>
-<p>name</p>
+<h2>books</h2>
+<p></p>
+<p>Title</p>
+<p>Opinion</p>
 <% @books. each do |book| %>
   <div>
-    <%= image_tag book.user.get_profile_image(100,100) %>
-    <p>Title<p>
-    <%= link_to book_path(book.id) do %>
-      <%= book.title %>
-    <% end %>
-    <p>Opinion<%= book.body %></p>
-  </div>
+  <%= image_tag book.user.get_profile_image(100,100) %>
+  <%= link_to book_path(book.id) do %>
+    <%= book.title %>
+  <% end %>
+  <p><%= book.body %>
+  </p>
+</div>
 <% end %>
-

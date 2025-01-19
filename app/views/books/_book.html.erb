@@ -1,0 +1,22 @@
+index同士の部分テンプレート
+
+<div>
+<p><%= image_tag user.get_profile_image(100,100) %></p>
+<p>name
+  <%= user.name %>
+</p>
+<p>introduction
+  <%= user.introduction %>
+</p>
+<%= link_to "ユーザー編集のアイコン", edit_user_path(@user.id) %>
+</div>
+
+<h2>New book</h2>
+
+<%= form_with model: book do |f| %>
+  <label>Title</label>
+    <%= f.text_field :title %>
+  <label>Opinion</label>
+    <%= f.text_area :body %>
+  <%= f.submit 'Create Book' %>
+<% end %>

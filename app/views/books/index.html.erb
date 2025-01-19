@@ -1,48 +1,29 @@
-<h1>Bookの一覧ページ </h1>
-
-<h2>User info</h2>
-
-<div>
-  <%= image_tag current_user.get_profile_image(100,100) %>
-  <p>name
-    <%= current_user.name %>
-  </p>
-  <p>introduction
-    <%= current_user.introduction %>
-  </p>
-  <% if current_user %>
-    <p><%= link_to "プロフィール編集のアイコン", edit_user_path(current_user.id) %></p>
-  <% end %>
-</div>
-
-<h1>New book</h1>
-
-<%= form_with model: @book do |f| %>
-  <label>Title</label>
-    <%= f.text_field :title %>
-  <label>Opinion</label>
-    <%= f.text_area :body %>
-  <%= f.submit 'Create Book' %>
+<h1>ブックの一覧ページ</h1>
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>件のerrorが発生しました
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
 <% end %>
 
-<% if @user == current_user %>
-  <%= link_to "Edit", edit_user_path(@user) %> 
-<% else %>
-  
-<% end %>
+<%= render 'book', book: @book, user: @user %>
+
 
 
 <h2>Books</h2>
-
+<p></p>
+<p>title<p>
+<p>Opinion</p>
 <% @books.each do |book| %>
   <div>
     <%= link_to user_path(book.user.id) do %>
-    <p><%= image_tag book.user.get_profile_image(100,100) %></p>
+      <%= image_tag book.user.get_profile_image(100,100) %>
     <% end %>
-    <p>Title<p>
     <%= link_to book_path(book.id) do %>
-      <%= book.title %>
+      <p><%= book.title %><p>
     <% end %>
-    <p>Opinion<%= book.body %></p>
+    <p><%= book.body %><p>
   </div>
 <% end %>
