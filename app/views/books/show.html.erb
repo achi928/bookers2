@@ -1,21 +1,36 @@
-<h1>bookの詳細ページ</h1>
 
-<div>
-  <%= flash[:notice] %>
-</div>
+<%= render 'book', user: @user, book: @book_new %>
 
-<%= render 'users/user', user: @user, book_new: @book_new %>
+<div class = "col-md-8 offset-md-1">
+  <h2>Book detail</h2>
+  <table class = "book-table">
+    <tbody>
+      <tr>
+        <td>
+          <%= link_to user_path(@user.id) do %>
+            <%= image_tag @user.get_profile_image(100,100) %>
+            <%= @user.name %>
+          <% end %>
+        </td>
+        <td>
+          <%= @book.title %>
+        </td>
+        <td>
+          <%= @book.body %>
+        </td>
+        <td>
+          <% if @book.user == current_user %>
+            <%= link_to "Edit", edit_book_path(@book.id) %>
+            <%= link_to "Destroy", book_path(@book.id), method: :delete %>
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  </div>
+  </div>
 
-<h2>Book detail</h2>
 
-<%= link_to user_path(@user.id) do %>
-  <%= image_tag @user.get_profile_image(100,100) %>
-  <%= @user.name %>
-<% end %>
-<%= @book.title %>
-<%= @book.body %>
 
-<% if @book.user == current_user %>
-  <%= link_to "Edit", edit_book_path(@book.id) %>
-  <%= link_to "Destroy", book_path(@book.id), method: :delete %>
-<% end %>
+

@@ -1,21 +1,25 @@
-<div>
-  <%= flash[:notice] %>
-</div>
+<div class = "container mx-auto">
+<div class = "row">
+<div class = "mx-auto">
 
-<h1>welcme to bookers!!</h1>
-
-<p>
-  In Bookers,
-<p>
+<h1>welcme to <i class="fa-solid fa-book"></i>bookers!!</h1>
 
 <p>
-  you can share and exchange your opinions , inpressions ,<br>
-  and emotions
+  In <i class="fa-solid fa-book"></i>Bookers,
+</p>
+
+<p>
+  you can share and exchange your opinions , inpressions , and emotions
 </p>
 
 <p>
   about various books!
 </p>
 
-<%= link_to "Log in", new_user_session_path %>
-<%= link_to "Sign up", new_user_registration_path %>
+<%= link_to "Log in", new_user_session_path, class: "btn btn-primary btn-sm btn-block  mb-3" %>
+<%= link_to "Sign up", new_user_registration_path, class: "btn btn-success btn-sm btn-block mb-3" %>
+
+
+</div>
+</div>
+</div>
