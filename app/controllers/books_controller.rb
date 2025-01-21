@@ -1,7 +1,6 @@
 class BooksController < ApplicationController
-  before_action :set, only: [:destroy, :update, :edit, :show]
-
-  before_action :is_matching_login_user, only: [:destroy, :update, :edit]
+  
+  before_action :is_matching_login_user, only: [:update, :edit]
 
   def create
     @book = Book.new(book_params)
@@ -24,7 +23,8 @@ class BooksController < ApplicationController
 
   def show
     @book_new = Book.new
-
+    @book = Book.find(params[:id])
+    @user = @book.user
   end
 
   def destroy
@@ -61,8 +61,4 @@ class BooksController < ApplicationController
     end
   end
 
-  def set
-    @book = Book.find(params[:id])
-    @user = @book.user
-  end
 end

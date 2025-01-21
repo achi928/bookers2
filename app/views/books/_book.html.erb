@@ -23,7 +23,6 @@
       </div>
 
       <h2>New book</h2>
-      <form>
         <%= form_with model: book do |f| %>
           <div class="form-group">
             <label for = "booktitle">Title</label><br>
@@ -37,6 +36,5 @@
             <%= f.submit 'Create Book', class: "btn btn-success mb-3 mt-3" %>
           </div>
         <% end %>
-      </form>
     </div>
 
