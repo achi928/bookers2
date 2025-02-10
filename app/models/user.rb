@@ -8,6 +8,12 @@ class User < ApplicationRecord
 
   has_many :books, dependent: :destroy
 
+  has_many :my_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  has_many :followings, through: :my_relationships, source: :followed
+
+  has_many :you_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+  has_many :followers, through: :you_relationships, source: :follower
+
   validates :name, presence: true, uniqueness: true, length: { minimum: 2, maximum: 20 }
   validates :introduction, presence: false, length: { maximum: 50 }
 
@@ -19,6 +25,14 @@ class User < ApplicationRecord
       profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
     profile_image.variant(resize_to_limit: [width, height]).processed
+  end
+
+  def follow(user)
+    my_relationships.create(followed_id: user.id)
+  end
+
+  def following?(user)
+    followings.include?(user)
   end
 
 end

@@ -13,9 +13,27 @@
             <th>introduction</th>
             <th><%= user.introduction %></th>
           </tr>
+          <tr>
+            <th>follows</th>
+            <th>
+              <%= link_to follow_path(user.id) do %>
+                <%= current_user.my_relationships.count %>
+              <% end %>
+            </th>
+          </tr>
+          <tr>
+            <th>follower</th>
+            <th>
+              <%= link_to follower_path(user.id) do %>
+                <%= current_user.you_relationships.count %>
+              <% end %>
+            </th>
+          </tr>
         </tbody>
       </table>
-
+      <table>
+        <%= render 'users/follow-btn', user: @user %>
+      </table>
       <div class = "row">
         <%= link_to edit_user_path(user.id), class: "btn btn-outline-dark btn-block" do %>
           <i class="fa-solid fa-user-gear"></i>
